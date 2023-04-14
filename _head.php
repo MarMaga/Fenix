@@ -1,3 +1,4 @@
+<link rel="icon" href="dist/img/Favicon-Fenix.gif" sizes="32x32">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
