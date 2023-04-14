@@ -12,7 +12,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-file"></i>
                     <p>
                         Cadastros
                         <i class="right fas fa-angle-left"></i>
@@ -41,7 +41,7 @@
             </li>
             <li class="nav-item">
                 <a href="widgets.html" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-file-alt"></i>
                     <p>
                         Propostas
                     </p>
@@ -49,7 +49,7 @@
             </li>
             <li class="nav-item">
                 <a href="widgets.html" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-door-open"></i>
                     <p>
                         Sair
                     </p>
