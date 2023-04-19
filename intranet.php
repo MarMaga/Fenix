@@ -10,7 +10,9 @@ include_once '_head.php';
   <div class="wrapper">
     <!-- Navbar -->
 
-      <?php include_once '_menu.php'; ?>
+      <?php 
+      include_once '_topo.php';
+      include_once '_menu.php'; ?>
 
       </div>
       <!-- /.sidebar -->

@@ -1,5 +1,5 @@
-<link rel="icon" href="dist/img/Favicon-Fenix.gif" sizes="32x32">
 <head>
+    <link rel="icon" href="dist/img/Favicon-Fenix.gif" sizes="32x32">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Fênix Intranet</title>
