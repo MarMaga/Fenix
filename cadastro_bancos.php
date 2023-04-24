@@ -1,9 +1,11 @@
 <?php
 
-if (isset($_POST['btn_salvar'])){
-    echo 'Botão clicado';
-}
+if (isset($_POST['btn_salvar'])) {
 ?>
+<script>
+    alert("Botão Salvar clicado");
+</script>
+<?php } ?>
 
 <!DOCTYPE html>
 <html>
@@ -11,10 +13,6 @@ if (isset($_POST['btn_salvar'])){
 <?php
 include_once '_head.php';
 ?>
-<script>
-    alert("Botão Salvar clicado")
-</script>
-
 
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
@@ -51,19 +49,19 @@ include_once '_head.php';
                             <label>Nome do banco (com o código)</label>
                             <input type="text" class="form-control" placeholder="Exemplo: 001 - Banco do Brasil"><br>
                             <div>
-                                <button name="btn_salvar" type="button" class="btn btn-block btn-primary">Salvar</button>
+                                <button name="btn_salvar" class="btn btn-block btn-primary">Salvar</button>
                             </div>
                         </div>
                     </form>
                     <form action="cadastro_bancos.php" method="post">
-                    <div class="card-body form-group">
-                        <label>Pesquisa</label>
-                        <input type="text" class="form-control" placeholder="Digite o número ou o nome do banco ..."><br>
-                        <div>
-                            <button name="btn_filtrar" type="button" class="btn btn-block btn-secondary">Filtrar</button>
-                            <button name="btn_limparfiltro" type="button" class="btn btn-block btn-secondary">Limpar filtro</button>
+                        <div class="card-body form-group">
+                            <label>Pesquisa</label>
+                            <input type="text" class="form-control" placeholder="Digite o número ou o nome do banco ..."><br>
+                            <div>
+                                <button name="btn_filtrar" type="button" class="btn btn-block btn-secondary">Filtrar</button>
+                                <button name="btn_limparfiltro" type="button" class="btn btn-block btn-secondary">Limpar filtro</button>
+                            </div>
                         </div>
-                    </div>
                     </form>
                     <!-- <div class="card-body">
                         <form action="remover_equipamento.php" method="post">
@@ -102,12 +100,13 @@ include_once '_head.php';
         </section>
     </div>
     <?php
-    include_once '_footer.php';
-    ?>
+include_once '_footer.php';
+?>
     </div>
     <!-- ./wrapper -->
 
 </body>
 
 </html>
+
 </html>
