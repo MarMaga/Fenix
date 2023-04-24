@@ -20,7 +20,8 @@ include_once '_head.php';
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Modelo</h1>
+              <h1>Cadastro de bancos</h1>
+              <hr>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
