@@ -4,6 +4,10 @@ if (isset($_POST['btn_salvar'])) {
     echo 'Botão clicado';
 }
 ?>
+<script>
+    alert("Botão Salvar clicado");
+</script>
+<?php } ?>
 
 <!DOCTYPE html>
 <html>
@@ -115,11 +119,13 @@ include_once '_head.php';
         </section>
     </div>
     <?php
-    include_once '_footer.php';
-    ?>
+include_once '_footer.php';
+?>
     </div>
     <!-- ./wrapper -->
 
 </body>
+
+</html>
 
 </html>
