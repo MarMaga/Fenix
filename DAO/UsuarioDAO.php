@@ -67,8 +67,8 @@ class UsuarioDAO extends Conexao
             return 0;
         }
 
-        $email = trim($_POST['email']);
-        $senha = trim($_POST['senha']);
+        $email = trim($email);
+        $senha = trim($senha);
 
         $conexao = parent::retornarConexao();
 

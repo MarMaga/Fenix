@@ -15,3 +15,6 @@ function btnNovoBanco(){
     return false;
 }
 
+function btnSalvarBanco(){
+    
+}

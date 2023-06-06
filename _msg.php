@@ -59,18 +59,28 @@ if (isset($ret)) {
     case -9:
       echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">';
       echo 'Este registro já existe no cadastro! ';
-      if($_SERVER["REQUEST_URI"] == "/financeiro/nova_categoria.php"){
-          echo '<a href="consultar_categoria.php" class="btn btn-success">Consultar</a>';
-      } else if($_SERVER["REQUEST_URI"] == "/financeiro/nova_empresa.php"){
-          echo '<a href="consultar_empresa.php" class="btn btn-success">Consultar</a>';
-      } else if($_SERVER["REQUEST_URI"] == "/financeiro/novo_banco.php"){
-          echo '<a href="consultar_banco.php" class="btn btn-success">Consultar</a>';
-      } else if($_SERVER["REQUEST_URI"] == "/financeiro/nova_conta.php"){
-          echo '<a href="consultar_conta.php" class="btn btn-success">Consultar</a>';
-      } else if($_SERVER["REQUEST_URI"] == "/financeiro/realizar_movimento.php"){
-          echo '<a href="consultar_movimento.php" class="btn btn-success">Consultar</a>';
+      if ($_SERVER["REQUEST_URI"] == "/financeiro/nova_categoria.php") {
+        echo '<a href="consultar_categoria.php" class="btn btn-success">Consultar</a>';
+      } else if ($_SERVER["REQUEST_URI"] == "/financeiro/nova_empresa.php") {
+        echo '<a href="consultar_empresa.php" class="btn btn-success">Consultar</a>';
+      } else if ($_SERVER["REQUEST_URI"] == "/financeiro/novo_banco.php") {
+        echo '<a href="consultar_banco.php" class="btn btn-success">Consultar</a>';
+      } else if ($_SERVER["REQUEST_URI"] == "/financeiro/nova_conta.php") {
+        echo '<a href="consultar_conta.php" class="btn btn-success">Consultar</a>';
+      } else if ($_SERVER["REQUEST_URI"] == "/financeiro/realizar_movimento.php") {
+        echo '<a href="consultar_movimento.php" class="btn btn-success">Consultar</a>';
       }
       echo '</div>';
+      break;
+    case -10:
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
+              O nome do banco deve ter no mínimo 3 letras!
+              </div>';
+      break;
+    case -11:
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
+                Este número já está sendo usado em outro banco!
+                </div>';
       break;
     case "CATEGORIA GRAVADA":
       echo '<div class="alert alert-success" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">

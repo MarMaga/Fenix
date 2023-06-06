@@ -47,8 +47,6 @@ if (isset($_POST['btnFiltrar'])) {
 
         $ret = $dao->ExcluirBanco($idBanco);
 
-    } else if (isset($_POST['btnNovo'])) {
-
     } else if (isset($_POST['btnSalvar'])) {
 
         $idBanco = $_POST['idBanco'];
@@ -106,7 +104,7 @@ include_once '_head.php';
                                     <button name="btnSalvar" title="Salvar o banco" onclick="return ValidarBanco()"
                                         class="btn bg-gradient-primary btn-sm fa fa-save"
                                         style="width: 55px; margin: 2px"></button>
-                                        <!--<button name="btnExcluir" title="Excluir"
+                                    <!--<button name="btnExcluir" title="Excluir"
                                         class="btn bg-gradient-primary btn-sm fa fa-trash-alt"
                                         style="width: 55px; margin: 2px"></button>
                                         <button name="btnCarregar"
@@ -114,8 +112,8 @@ include_once '_head.php';
                                         style="width: 75px; margin: 2px"><br>Carregar</button>
                                         <button name="btnSair" class="btn bg-gradient-primary btn-sm far fa-window-close"
                                         style="width: 75px; margin: 2px"><br>Sair</button>-->
-                                        <button title="Volta para o início da página" onclick="return VaiParaCima()"
-                                            class="btn btn-lg fa fa-arrow-alt-circle-up"></button>
+                                    <button title="Volta para o início da página" onclick="return VaiParaCima()"
+                                        class="btn btn-lg fa fa-arrow-alt-circle-up"></button>
                                 </div>
                             </div>
                         </li>
@@ -145,38 +143,38 @@ include_once '_head.php';
                         <!-- <div class="card-header">
                             <h3 class="card-title">Pesquisar</h3>
                             </div> -->
-                        <div class="card col-sm-12">
-                            <div class="card-body form-group">
-                                    <a><b>Filtro</b></a>
-                                    <input name="filtroBanco" class="form-control"
-                                        style="width: 400px; margin-right: 0px;"
+                        <form action="cadastro_banco.php" method="post">
+                            <div class="card col-sm-12">
+                                <div class="card-body form-group">
+                                    <a><b>Filtro</b></a><br>
+                                    <input name="filtroBanco" id="filtroBanco" class="form-control"
+                                        style="width: 415px; display: inline-block"
                                         placeholder="Digite o número ou o nome do banco ...">
                                     <button name="btnFiltrar" class="btn btn-secondary btn-sm"
-                                        style="margin-top: 5px; margin-right: 5px">Filtrar</button>
+                                        onclick="return FiltrarBanco()">Filtrar</button>
                                     <button name="btnLimparfiltro" class="btn btn-secondary btn-sm"
-                                        style="margin-top: 5px">Limpar</button>
-                                <br>
-                                <br>
-                                <form action="cadastro_banco.php" method="post">
+                                        onclick="return LimparFiltroBanco()">Limpar</button>
+                                    <br>
+                                    <br>
                                     <table class="table table-striped table-bordered table-hover"
                                         id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Banco <label id="filtro" style="color: red">
+                                                <th>Banco <label id="lblBanco" style="color: red">
                                                         <?= isset($filtrado) ? $filtrado : '' ?>
                                                     </label></th>
-                                                <th>Ações</th>
+                                                <th style="width: 100px; text-align: center">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php for ($i = 0; $i < count($bancos); $i++) { ?>
                                                 <tr class="odd gradeX">
-                                                    <td>
+                                                    <td style="vertical-align: middle">
                                                         <a>
                                                             <?= $bancos[$i]['nome_banco'] ?>
                                                         </a>
                                                     </td>
-                                                    <td>
+                                                    <td style="text-align: center; vertical-align: middle">
                                                         <a href="cadastro_banco.php?cod=<?= $bancos[$i]['id_banco'] ?>"
                                                             title="Alterar" style="width: 33px"
                                                             class="btn btn-warning btn-sm fa fa-edit"></a>
@@ -220,13 +218,13 @@ include_once '_head.php';
                                             <?php } ?>
                                         </tbody>
                                     </table>
-                                </form>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </section>
             </div>
-        </form>
+    </div>
+    </section>
+    </div>
+    </form>
     </div>
     <?php
     include_once '_footer.php';

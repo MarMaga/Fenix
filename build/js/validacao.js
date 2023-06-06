@@ -275,6 +275,10 @@ function ValidarBanco() {
         alert("Preencher corretamente o campo:\n -Banco");
         $("#nome").focus();
         return false;
+    } else if (nome == -10) {
+        alert("O nome do banco deve ter no mínimo 3 letras!");
+        $("#nome").focus();
+        return false;
     }
 
     var h_nome = $("#h_nome").val().trim();
@@ -339,11 +343,14 @@ function TrataNomeBanco(nome) {
         restanteNome = nome.trim().substr(localTraco + 1, nome.length);
     }
 
+    restanteNome = restanteNome.trim();
+    
     // se o restante do nome tiver menos de 2 dígitos, retorna 0 (deve ter pelo menos 2)
-    if (restanteNome.length < 2)
-        return 0;
+    if (restanteNome.length < 2){
+        return -10;
+    }
 
-        // se chegou aqui,
+    // se chegou aqui,
     // os 3 primeiros dígitos são numéricos (número do banco)
     // o traço foi encontrado
     // o nome do banco (restante após o traço) tem mais de 1 dígito
@@ -378,10 +385,10 @@ function HideOperacao() {
 }
 
 function FiltrarBanco() {
-    var banco = $("#pesqBanco").val()
+    var banco = $("#filtroBanco").val()
 
     if (banco == '') {
-        $("#pesqBanco").focus();
+        $("#filtroBanco").focus();
         return false;
     }
 }
@@ -389,8 +396,8 @@ function FiltrarBanco() {
 function LimparFiltroBanco() {
     var lblBanco = $("#lblBanco").text()
 
-    if (lblBanco.trim().length == 39) {
-        $("#banco").focus();
+    if (lblBanco.trim().length == 0) {
+        $("#filtroBanco").focus();
         return false;
     }
 }
@@ -450,3 +457,33 @@ function Hoje() {
     hoje = aaaa + '-' + mm + '-' + dd;
     return hoje;
 }
+
+function ValidarLogin(){
+
+    var email = $("#email").val().trim();
+    var senha = $("#senha").val().trim();
+    
+    if (email == ''){
+        alert("Preencher todos os campos!");
+        $("#nome").focus();
+        return false;
+    }
+
+    if (senha == ''){
+        alert("Preencher todos os campos!");
+        $("#email").focus();
+        return false;
+    }
+
+    if (!email.includes("@") || email.slice(-1) == "@"){
+        alert("E-mail inválido!");
+        return false;
+    }
+
+    if (senha.length < 6){
+        alert("A senha deve ter no mínimo 6 dígitos!");
+        $("#senha").focus();
+        return false;
+    }
+}
+

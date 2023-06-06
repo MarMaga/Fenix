@@ -17,10 +17,32 @@ class BancoDAO extends Conexao
 
         if ($nome == 0) {
             return 0;
+        } else if ($nome == -10) {
+            return -10;
         }
 
         $conexao = Conexao::retornarConexao();
 
+        // verifica se o número do banco já está gravado em outro banco
+        $comando_sql = 'select count(nome_banco) as nome
+                          from tb_banco
+                         where left(nome_banco,3) = ?';
+
+        $sql = new PDOStatement();
+
+        $sql = $conexao->prepare($comando_sql);
+
+        $sql->bindValue(1, substr($nome,0,3));
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute();
+
+        $existe = $sql->fetchAll();
+
+        if ($existe[0]['nome'] > 0) {
+            return -11;
+        }
+
+        // verifica se o banco que está sendo incluído já está salvo 
         $comando_sql = 'select count(nome_banco) as nome
                           from tb_banco
                           where nome_banco = ?';
@@ -35,7 +57,7 @@ class BancoDAO extends Conexao
 
         $existe = $sql->fetchAll();
 
-        if ($existe[0]['nome'] >0){
+        if ($existe[0]['nome'] > 0) {
             return -9;
         }
 
@@ -89,7 +111,7 @@ class BancoDAO extends Conexao
 
         # se o restante do nome tiver menos de 2 dígitos, retorna 0 (deve ter pelo menos 2)
         if (strlen($restanteNome) < 2)
-            return 0;
+            return -10;
 
         //$restanteNome = strtoupper($restanteNome);
 
@@ -113,8 +135,10 @@ class BancoDAO extends Conexao
 
         if ($nome == 0) {
             return 0;
+        } else if ($nome == -10) {
+            return -10;
         }
-        
+
         $conexao = parent::retornarConexao();
         $comando_sql = 'update tb_banco
                            set nome_banco = ?
