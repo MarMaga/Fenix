@@ -91,7 +91,7 @@ class BancoDAO extends Conexao
         if (strlen($restanteNome) < 2)
             return 0;
 
-        $restanteNome = strtoupper($restanteNome);
+        //$restanteNome = strtoupper($restanteNome);
 
         # se chegou aqui,
         # os 3 primeiros dígitos são numéricos (número do banco)
@@ -109,6 +109,12 @@ class BancoDAO extends Conexao
             return 0;
         }
 
+        $nome = $this->TrataNomeBanco($nome);
+
+        if ($nome == 0) {
+            return 0;
+        }
+        
         $conexao = parent::retornarConexao();
         $comando_sql = 'update tb_banco
                            set nome_banco = ?

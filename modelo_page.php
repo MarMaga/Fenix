@@ -33,7 +33,7 @@ include_once '_head.php';
             <section class="content">
 
                 <!-- Default box -->
-                <div class="card">
+                <div class="card" style="height: 2200px">
                     <div class="card-header">
                         <h3 class="card-title">Remova os equipamentos nessa página</h3>
                     </div>

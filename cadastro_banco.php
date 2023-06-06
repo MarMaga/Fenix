@@ -4,11 +4,13 @@ require_once 'DAO/UtilDAO.php';
 UtilDAO::VerificarLogado();
 require_once 'DAO/BancoDAO.php';
 
+$banco = '';
+
 $dao = new BancoDAO();
 
-if (isset($_POST['btn_filtrar'])) {
+if (isset($_POST['btnFiltrar'])) {
 
-    $filtro = $_POST['pesqBanco'];
+    $filtro = $_POST['filtroBanco'];
     $bancos = $dao->FiltrarBanco($filtro);
 
     $bancos = $dao->FiltrarBanco($filtro);
@@ -17,14 +19,53 @@ if (isset($_POST['btn_filtrar'])) {
 
         $ret = "FILTRO ZERADO";
         $bancos = $dao->ConsultarBanco();
-    
+
     } else {
         $filtrado = "[----- FILTRO ATIVADO -----]";
     }
 
 } else {
+
+    if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
+
+        $cod = $_GET['cod'];
+
+        //if (!ValidaCodigo($cod)) {
+        //    ChamarPagina('cadastro_banco.php');
+        //    exit;
+        //} else {
+        $banco = $dao->CarregarBanco($cod);
+        if (count($banco) == 0) {
+            ChamarPagina('cadastro_banco.php');
+            exit;
+        }
+        //}
+
+    } else if (isset($_POST['btnExcluir'])) {
+
+        $idBanco = $_POST['idBancoExcluir'];
+
+        $ret = $dao->ExcluirBanco($idBanco);
+
+    } else if (isset($_POST['btnNovo'])) {
+
+    } else if (isset($_POST['btnSalvar'])) {
+
+        $idBanco = $_POST['idBanco'];
+        $nome = $_POST['nome'];
+
+        $objDAO = new BancoDAO();
+
+        if ($idBanco == '') {
+            $ret = $objDAO->CadastrarBanco($nome);
+        } else {
+            $ret = $objDAO->AlterarBanco($nome, $idBanco);
+        }
+
+    }
+
     $bancos = $dao->ConsultarBanco();
-    $filtrado = "";
+    $filtrado = '';
 }
 
 ?>
@@ -45,103 +86,153 @@ include_once '_head.php';
         include_once '_menu.php';
         ?>
 
-        <div style="position: sticky; top: 60px; width: 100%; z-index: 1">
-            <!-- Título da página -->
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-                <ul class="navbar-nav" style="width: 100%">
-                    <li class="nav-item" style="width: 100%">
-                        <div class="row mb-2">
-                            <div class="col-sm-6" style="padding-left: 20px; padding-top: 7px">
-                                <h1>CADASTRO DE BANCOS</h1>
-                                <h3 class="card-title">Cadastre os bancos nesta página</h3>
+        <form action="cadastro_banco.php" method="post">
+            <div style="position: sticky; top: 57px; width: 100%; z-index: 1">
+                <!-- Título da página -->
+                <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                    <ul class="navbar-nav" style="width: 100%">
+                        <li class="nav-item" style="width: 100%">
+                            <div class="row mb-2">
+                                <div class="col-sm-12" style="padding-left: 20px; padding-top: 7px">
+                                    <h3 style="color: #007bff">CADASTRO DE BANCOS</h3>
+                                    <h3 class="card-title">Inclua, altere e exclua os bancos nesta página</h3>
+                                </div>
+                                <hr>
+                                <div class="col-sm-12" style="padding-top: 10px; padding-left: 20px">
+                                    <button name="btnNovo" title=" Limpar a tela para incluir um novo banco"
+                                        onclick="return btnNovoBanco()"
+                                        class="btn bg-gradient-primary btn-sm fa fa-star"
+                                        style="width: 55px; margin: 2px"></button>
+                                    <button name="btnSalvar" title="Salvar o banco" onclick="return ValidarBanco()"
+                                        class="btn bg-gradient-primary btn-sm fa fa-save"
+                                        style="width: 55px; margin: 2px"></button>
+                                        <!--<button name="btnExcluir" title="Excluir"
+                                        class="btn bg-gradient-primary btn-sm fa fa-trash-alt"
+                                        style="width: 55px; margin: 2px"></button>
+                                        <button name="btnCarregar"
+                                        class="btn bg-gradient-primary btn-sm far fa-check-circle"
+                                        style="width: 75px; margin: 2px"><br>Carregar</button>
+                                        <button name="btnSair" class="btn bg-gradient-primary btn-sm far fa-window-close"
+                                        style="width: 75px; margin: 2px"><br>Sair</button>-->
+                                        <button title="Volta para o início da página" onclick="return VaiParaCima()"
+                                            class="btn btn-lg fa fa-arrow-alt-circle-up"></button>
+                                </div>
                             </div>
-                            <div class="col-sm-6" style="padding-top: 5px; padding-right: 80px">
-                                <button class="btn bg-gradient-primary btn-lg fa fa-star"
-                                    style="width: 120px; margin: 5px"><br>Novo</button>
-                                <button class="btn bg-gradient-primary btn-lg fa fa-save"
-                                    style="width: 120px; margin: 5px"><br>Salvar</button>
-                                <button class="btn bg-gradient-primary btn-lg fa fa-trash-alt"
-                                    style="width: 120px; margin: 5px"><br>Excluir</button>
-                                <button class="btn bg-gradient-primary btn-lg far fa-check-circle"
-                                    style="width: 120px; margin: 5px"><br>Carregar</button>
-                                <button class="btn bg-gradient-primary btn-lg far fa-window-close"
-                                    style="width: 120px; margin: 5px"><br>Sair</button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="padding-top: 17px">
-            <!-- Main content -->
-            <section class="content col-sm-12">
+            <?php require_once '_msg.php' ?>
 
-                <!-- Default box -->
-                <div class="card">
-                    <form action="cadastro_bancos.php" method="post">
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" style="padding-top: 15px">
+                <!-- Main content -->
+                <section class="content col-sm-12">
+
+                    <!-- Default box -->
+                    <div class="card">
                         <div class="card-body form-group">
-                            <label>Nome do banco (com o código)</label>
-                            <input type="text" class="form-control" placeholder="Exemplo: 001 - Banco do Brasil">
-                            <br>
-                            <div>
-                                <button name="btn_salvar" class="btn btn-primary">Salvar</button>
-                            </div>
+                            <input name="idBanco" id="idBanco" type="hidden"
+                                value="<?= isset($banco[0]['id_banco']) ? $banco[0]['id_banco'] : '' ?>" />
+                            <a><b>Nome do banco</b> (com o código)</a>
+                            <input name="nome" id="nome" class="form-control"
+                                placeholder="Exemplo: 001 - Banco do Brasil"
+                                value="<?= isset($banco[0]['nome_banco']) ? $banco[0]['nome_banco'] : '' ?>">
                         </div>
-                    </form>
-                </div>
-                <div class="card">
-                    <!-- <div class="card-header">
-                        <h3 class="card-title">Pesquisar</h3>
-                    </div> -->
-                    <form action="cadastro_bancos.php" method="post">
-                        <div class="card-body form-group">
-                            <label>Filtro</label>
-                            <input type="text" class="form-control"
-                                placeholder="Digite o número ou o nome do banco ...">
-                            <br>
-                            <div>
-                                <button name="btn_filtrar" class="btn btn-secondary"
-                                    style="margin: 5px">Filtrar</button>
-                                <button name="btn_limparfiltro" class="btn btn-secondary" style="margin: 5px">Limpar
-                                    filtro</button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="col-md-12">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <thead>
-                                <tr>
-                                    <th>Banco <label id="filtro" style="color: red">
-                                            <?= isset($filtrado) ? $filtrado : '' ?>
-                                        </label></th>
-                                    <th>Ação</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($bancos as $item) { ?>
-                                    <tr class="odd gradeX">
-                                        <td>
-                                            <?= $item['nome_banco'] ?>
-                                        </td>
-                                        <td><a href="alterar_banco.php?cod=<?= $item['id_banco'] ?>"
-                                                class="btn btn-warning btn-xs">Alterar</a></td>
-                                    </tr>
-                                <?php } ?>
-                        </table>
                     </div>
-                </div>
-            </section>
-        </div>
+                    <div class="card">
+                        <!-- <div class="card-header">
+                            <h3 class="card-title">Pesquisar</h3>
+                            </div> -->
+                        <div class="card col-sm-12">
+                            <div class="card-body form-group">
+                                    <a><b>Filtro</b></a>
+                                    <input name="filtroBanco" class="form-control"
+                                        style="width: 400px; margin-right: 0px;"
+                                        placeholder="Digite o número ou o nome do banco ...">
+                                    <button name="btnFiltrar" class="btn btn-secondary btn-sm"
+                                        style="margin-top: 5px; margin-right: 5px">Filtrar</button>
+                                    <button name="btnLimparfiltro" class="btn btn-secondary btn-sm"
+                                        style="margin-top: 5px">Limpar</button>
+                                <br>
+                                <br>
+                                <form action="cadastro_banco.php" method="post">
+                                    <table class="table table-striped table-bordered table-hover"
+                                        id="dataTables-example">
+                                        <thead>
+                                            <tr>
+                                                <th>Banco <label id="filtro" style="color: red">
+                                                        <?= isset($filtrado) ? $filtrado : '' ?>
+                                                    </label></th>
+                                                <th>Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php for ($i = 0; $i < count($bancos); $i++) { ?>
+                                                <tr class="odd gradeX">
+                                                    <td>
+                                                        <a>
+                                                            <?= $bancos[$i]['nome_banco'] ?>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="cadastro_banco.php?cod=<?= $bancos[$i]['id_banco'] ?>"
+                                                            title="Alterar" style="width: 33px"
+                                                            class="btn btn-warning btn-sm fa fa-edit"></a>
+                                                        <a href="" title="Excluir" style="width: 33px"
+                                                            class="btn btn-danger btn-sm fa fa-trash-alt"
+                                                            data-toggle="modal" data-target="#modalExcluir<?= $i ?>"></a>
+                                                        <form action="cadastro_banco.php" method="post">
+                                                            <input name="idBancoExcluir" type="hidden"
+                                                                value="<?= $bancos[$i]['id_banco'] ?>" />
+                                                            <div class="modal fade" id="modalExcluir<?= $i ?>" tabindex="-1"
+                                                                role="dialog" aria-labelledby="myModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal"
+                                                                                aria-hidden="true">&times;</button>
+                                                                            <h4 class="modal-title" id="myModalLabel">
+                                                                                Confirmação de
+                                                                                exclusão</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Deseja excluir o banco:
+                                                                            <b>
+                                                                                <?= $bancos[$i]['nome_banco'] ?>
+                                                                            </b>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default"
+                                                                                data-dismiss="modal">Cancelar</button>
+                                                                            <button type="submit" class="btn btn-primary"
+                                                                                name="btnExcluir">Sim</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </form>
     </div>
     <?php
-    //include_once '_footer.php';
+    include_once '_footer.php';
     ?>
     </div>
     <!-- ./wrapper -->
 </body>
-
-</html>
 
 </html>

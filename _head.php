@@ -6,13 +6,13 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- da versão recebida da WMBarros ----------------------------->
+    <!-- da versão do ControleFinanceiroEAD ------------------------->
     <!-- BOOTSTRAP STYLES-->
- <!--   <link href="build/css/bootstrap.css" rel="stylesheet" /> -->
+    <!--<link href="build/css/bootstrap.css" rel="stylesheet" />-->
     <!-- FONTAWESOME STYLES-->
- <!--   <link href="build/css/font-awesome.css" rel="stylesheet" /> -->
+    <!--<link href="build/css/font-awesome.css" rel="stylesheet" />-->
     <!-- CUSTOM STYLES-->
- <!--   <link href="build/css/custom.css" rel="stylesheet" /> -->
+    <!--<link href="build/css/custom.css" rel="stylesheet" />-->
     <!--------------------------------------------------------------->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -33,4 +33,5 @@
     <!-- CUSTOM SCRIPTS -->
     <script src="build/js/custom.js"></script>
     <script src="build/js/validacao.js"></script>
+    <script src="build/js/botoes.js"></script>
 </head>

@@ -7,57 +7,57 @@ if (isset($ret)) {
 
   switch ($ret) {
     case 0:
-      echo '<div class="alert alert-warning" id="msg">
+      echo '<div class="alert alert-warning" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             Preencher o(s) campo(s) obrigatório(s)!
             </div>';
       break;
     case 1:
-      echo '<div class="alert alert-success" id="msg">
+      echo '<div class="alert alert-success" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             Ação realizada com sucesso!
             </div>';
       break;
     case -1:
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             Ocorreu um erro na operação. Tente mais tarde!
             </div>';
       break;
     case -2:
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             A senha deve conter no mínimo 6 caracteres!
             </div>';
       break;
     case -3:
-      echo '<div class="alert alert-danger" id="msg">
-            A senha e o repetir senha não conferem!
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
+            As duas senhas não conferem!
             </div>';
       break;
     case -4:
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             O registro não pode ser excluído, pois está em uso!
             </div>';
       break;
     case -5:
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             E-mail já cadastrado. Coloque outro e-mail!
             </div>';
       break;
     case -6:
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             Usuário não encontrado!
             </div>';
       break;
     case -7:
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             Senha inválida!
             </div>';
       break;
     case -8:
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             A data final é anterior à data inicial!
             </div>';
       break;
     case -9:
-      echo '<div class="alert alert-danger" id="msg">';
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">';
       echo 'Este registro já existe no cadastro! ';
       if($_SERVER["REQUEST_URI"] == "/financeiro/nova_categoria.php"){
           echo '<a href="consultar_categoria.php" class="btn btn-success">Consultar</a>';
@@ -73,17 +73,17 @@ if (isset($ret)) {
       echo '</div>';
       break;
     case "CATEGORIA GRAVADA":
-      echo '<div class="alert alert-success" id="msg">
+      echo '<div class="alert alert-success" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             A categoria foi gravada com sucesso!
             </div>';
       break;
     case "BANCO GRAVADO":
-      echo '<div class="alert alert-success" id="msg">
+      echo '<div class="alert alert-success" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             O banco foi gravado com sucesso!
             </div>';
       break;
     case "FILTRO ZERADO":
-      echo '<div class="alert alert-danger" id="msg">
+      echo '<div class="alert alert-danger" id="msg" style="margin-left: 260px; padding-left: 20px; margin: 10px; margin-left: 265px">
             Este filtro retornou vazio!
             </div>';
       break;
