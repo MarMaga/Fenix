@@ -133,7 +133,7 @@ include_once '_head.php';
                         <div class="card-body form-group">
                             <input name="idBanco" id="idBanco" type="hidden"
                                 value="<?= isset($banco[0]['id_banco']) ? $banco[0]['id_banco'] : '' ?>" />
-                            <a><b>Nome do banco</b> (com o código)</a>
+                            <a><b>Número e nome do banco</b> (com o código)</a>
                             <input name="nome" id="nome" class="form-control"
                                 placeholder="Exemplo: 001 - Banco do Brasil"
                                 value="<?= isset($banco[0]['nome_banco']) ? $banco[0]['nome_banco'] : '' ?>">

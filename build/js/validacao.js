@@ -261,7 +261,7 @@ function ValidarBanco() {
     var nome = $("#nome").val().trim();
     var mensagem = '';
 
-    mensagem = NotificarCampo(nome, "#divNome", mensagem, "\n -Banco");
+    mensagem = NotificarCampo(nome, "#divNome", mensagem, "\n -Número e nome do banco");
 
     if (mensagem != '') {
         alert("Preencher corretamente o campo:" + mensagem);
@@ -272,7 +272,7 @@ function ValidarBanco() {
     nome = TrataNomeBanco(nome);
 
     if (nome == 0) {
-        alert("Preencher corretamente o campo:\n -Banco");
+        alert("Preencher corretamente o campo:\n -Número e nome do banco");
         $("#nome").focus();
         return false;
     } else if (nome == -10) {

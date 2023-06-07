@@ -25,22 +25,18 @@ if (isset($_POST['btnAcessar'])) {
 
 <?php
 include_once '_head.php';
-require_once '_msg.php';
 ?>
 
-<body class="hold-transition login-page">
-    <div class="container">
-        <div class="row text-center ">
-            <div class="col-md-12">
-                <br /><br />
+<body>
 
-                <?php include_once '_msg.php' ?>
-
-                <h2> Controle Financeiro : ACESSO</h2>
-                <h5>( Faça seu login )</h5>
-                <br />
-            </div>
+    <div class="row text-center" style="margin-left: 10px; padding-left: 0px; background-color: #e9ecef">
+        <div class="col-10">
+            <?php
+            require_once '_msg.php';
+            ?>
         </div>
+    </div>
+    <div class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
                 <a href="../../index2.html"><b>Fênix </b>Intranet</a>
