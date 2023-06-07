@@ -96,6 +96,7 @@ include_once '_head.php';
                                     <h3 class="card-title">Inclua, altere e exclua os bancos nesta página</h3>
                                 </div>
                                 <hr>
+
                                 <div class="col-sm-12" style="padding-top: 10px; padding-left: 20px">
                                     <button name="btnNovo" title=" Limpar a tela para incluir um novo banco"
                                         onclick="return btnNovoBanco()"
@@ -121,12 +122,12 @@ include_once '_head.php';
                 </nav>
             </div>
 
-            <?php require_once '_msg.php' ?>
-
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper" style="padding-top: 15px">
                 <!-- Main content -->
                 <section class="content col-sm-12">
+
+                    <?php require_once '_msg.php' ?>
 
                     <!-- Default box -->
                     <div class="card">
@@ -143,6 +144,8 @@ include_once '_head.php';
                         <!-- <div class="card-header">
                             <h3 class="card-title">Pesquisar</h3>
                             </div> -->
+
+
                         <form action="cadastro_banco.php" method="post">
                             <div class="card col-sm-12">
                                 <div class="card-body form-group">
@@ -175,9 +178,9 @@ include_once '_head.php';
                                                         </a>
                                                     </td>
                                                     <td style="text-align: center; vertical-align: middle">
-                                                        <a href="cadastro_banco.php?cod=<?= $bancos[$i]['id_banco'] ?>"
+                                                        <a href="#"
                                                             title="Alterar" style="width: 33px"
-                                                            class="btn btn-warning btn-sm fa fa-edit"></a>
+                                                            class="btn btn-warning btn-sm fa fa-edit" onclick="return Detalhar('<?= $bancos[$i]['nome_banco'] ?>', '<?= $bancos[$i]['id_banco'] ?>')"></a>
                                                         <a href="" title="Excluir" style="width: 33px"
                                                             class="btn btn-danger btn-sm fa fa-trash-alt"
                                                             data-toggle="modal" data-target="#modalExcluir<?= $i ?>"></a>
@@ -221,16 +224,31 @@ include_once '_head.php';
                         </form>
                     </div>
             </div>
+            <?php
+            include_once '_footer.php';
+
+            ?>
     </div>
-    </section>
-    </div>
-    </form>
-    </div>
-    <?php
-    include_once '_footer.php';
-    ?>
-    </div>
-    <!-- ./wrapper -->
-</body>
 
 </html>
+</section>
+</div>
+</form>
+</div>
+<?php
+include_once '_scripts.php';
+
+?>
+</div>
+<!-- ./wrapper -->
+
+
+<script>
+    function Detalhar(nome, id) {
+      $("#nome").val(nome);
+      $("#idBanco").val(id);
+       
+        return false;
+    }
+</script>
+</body>

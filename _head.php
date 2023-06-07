@@ -23,15 +23,5 @@
     <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="build/js/jquery-1.10.2.js"></script>
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script src="build/js/bootstrap.min.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="build/js/jquery.metisMenu.js"></script>
-    <!-- CUSTOM SCRIPTS -->
-    <script src="build/js/custom.js"></script>
-    <script src="build/js/validacao.js"></script>
-    <script src="build/js/botoes.js"></script>
+   
 </head>

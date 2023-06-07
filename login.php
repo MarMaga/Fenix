@@ -29,13 +29,6 @@ include_once '_head.php';
 
 <body>
 
-    <div class="row text-center" style="margin-left: 10px; padding-left: 0px; background-color: #e9ecef">
-        <div class="col-10">
-            <?php
-            require_once '_msg.php';
-            ?>
-        </div>
-    </div>
     <div class="hold-transition login-page">
         <div class="login-box">
             <div class="login-logo">
@@ -45,8 +38,11 @@ include_once '_head.php';
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Faça seu login</p>
-
+                    
                     <form action="login.php" method="post">
+                        
+                        <?php require_once '_msg.php' ?>
+                        
                         <div class="input-group mb-3">
                             <input name="email" id="email" type="email" class="form-control" placeholder="E-mail">
                             <div class="input-group-append">
