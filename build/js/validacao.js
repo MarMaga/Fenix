@@ -123,20 +123,6 @@ function ValidarEmpresa() {
         erroAnt = true;
     }
 
-    mensagem = NotificarCampo(endereco, "#divEndereco", mensagem, "\n -Endereço");
-
-    if (mensagem != '' && !erroAnt) {
-        $("#endereco").focus();
-        erroAnt = true;
-    }
-
-    mensagem = NotificarCampo(telefone, "#divTelefone", mensagem, "\n -Telefone");
-
-    if (mensagem != '' && !erroAnt) {
-        $("#telefone").focus();
-        erroAnt = true;
-    }
-
     if (mensagem !== '') {
         alert("Preencher corretamente o(s) campo(s):" + mensagem);
         return false;
