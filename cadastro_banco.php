@@ -134,6 +134,8 @@ include_once '_head.php';
                         <div class="card-body form-group">
                             <input name="idBanco" id="idBanco" type="hidden"
                                 value="<?= isset($banco[0]['id_banco']) ? $banco[0]['id_banco'] : '' ?>" />
+                            <input id="h_nome" id="idBanco" type="hidden"
+                                value="<?= isset($banco[0]['id_banco']) ? $banco[0]['nome_banco'] : '' ?>" />
                             <a><b>Número e nome do banco</b> (com o código)</a>
                             <input name="nome" id="nome" class="form-control"
                                 placeholder="Exemplo: 001 - Banco do Brasil"
@@ -178,9 +180,9 @@ include_once '_head.php';
                                                         </a>
                                                     </td>
                                                     <td style="text-align: center; vertical-align: middle">
-                                                        <a href="#"
-                                                            title="Alterar" style="width: 33px"
-                                                            class="btn btn-warning btn-sm fa fa-edit" onclick="return Detalhar('<?= $bancos[$i]['nome_banco'] ?>', '<?= $bancos[$i]['id_banco'] ?>')"></a>
+                                                        <a href="#" title="Alterar" style="width: 33px"
+                                                            class="btn btn-warning btn-sm fa fa-edit"
+                                                            onclick="return AlterarBanco('<?= $bancos[$i]['nome_banco'] ?>', '<?= $bancos[$i]['id_banco'] ?>')"></a>
                                                         <a href="" title="Excluir" style="width: 33px"
                                                             class="btn btn-danger btn-sm fa fa-trash-alt"
                                                             data-toggle="modal" data-target="#modalExcluir<?= $i ?>"></a>
@@ -193,12 +195,12 @@ include_once '_head.php';
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <button type="button" class="close"
-                                                                                data-dismiss="modal"
-                                                                                aria-hidden="true">&times;</button>
                                                                             <h4 class="modal-title" id="myModalLabel">
                                                                                 Confirmação de
                                                                                 exclusão</h4>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal"
+                                                                                aria-hidden="true">&times;</button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             Deseja excluir o banco:
@@ -241,14 +243,4 @@ include_once '_scripts.php';
 ?>
 </div>
 <!-- ./wrapper -->
-
-
-<script>
-    function Detalhar(nome, id) {
-      $("#nome").val(nome);
-      $("#idBanco").val(id);
-       
-        return false;
-    }
-</script>
 </body>
